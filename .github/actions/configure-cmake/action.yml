@@ -53,11 +53,13 @@ runs:
         target: compiler/
 
     - name: Install toolchain (MinGW)
+      shell: bash
       if: runner.os == 'Windows' && matrix.cxx == 'g++' && steps.cache-mingw.outputs.cache-hit != 'true'
       run: |
         7z x compiler/${{ steps.download-mingw-gcc.outputs.filename }} -ogcc
 
     - name: Configure CMake (MinGW)
+      shell: bash
       if: runner.os == 'Windows' && matrix.cxx == 'g++'
       run: |
         PATH="$(pwd)/gcc/mingw64/bin:${PATH}"
@@ -70,6 +72,7 @@ runs:
           ${{ inputs.custom_flags }}
 
     - name: Configure CMake
+      shell: bash
       if: ${{ !(runner.os == 'Windows' && matrix.cxx == 'g++') }}
       run: |
         CMAKE_GENERATOR=${{ matrix.cmake_generator }} cmake -S ${GITHUB_WORKSPACE} -B ${{ env.BUILD_DIR }} \

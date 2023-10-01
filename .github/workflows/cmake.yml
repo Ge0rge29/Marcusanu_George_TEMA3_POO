@@ -191,7 +191,7 @@ jobs:
           - os: windows-2022
             c: gcc
             cxx: g++
-            name: "Windows 2022 MinGW GCC 11"
+            name: "Windows 2022 MinGW GCC 12"
             cmake_flags: -DBUILD_SHARED_LIBS=TRUE
             cmake_generator: Ninja
 
